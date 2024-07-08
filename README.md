@@ -73,7 +73,7 @@ singularity run chiav2.sif bwa index GRCm39.genome.fa
 # 2. Modify the information in the config file.
 
 # 3. Execute program.
-bash run.chiaV2.sh chiaV2.config.sh demoData/ChIATACdata/SCG0192 result
+bash run.chiaV2.sh chiaV2.config.sh ${PWD}/demoData/ChIATACdata/SCG0192 result # abspath
 ```
 
 ###   Example result
@@ -105,7 +105,7 @@ singularity run chiav2.sif bwa index GRCm39.genome.fa
 # 2. Modify the information in the config file.
 
 # 3. Execute program.
-bash hic_pipeline.sh demoData/SCG0192 result
+bash hic_pipeline.sh ${PWD}/demoData_hic/Bcell_hic ${PWD}/result # abspath
 ```
 
 ###   Example result (in result folder)
