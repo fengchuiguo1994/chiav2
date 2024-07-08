@@ -54,6 +54,6 @@ rm aligned.sam parsed.pairsam sorted.pairsam dedup.pairsam unsorted.bam
 ### Generate heatmap filter reads <1000bp
 zcat ${path}/${name}.mapped.pairs.cut.gz|grep "#" > tmppair1
 zcat ${path}/${name}.mapped.pairs.cut.gz|grep -v "#" |awk '($2==$4 && $5-$3>1000)||($2!=$4)'> tmppair2
-cat tmppair1 tmppair2 |gzip > result/${name}.flt1000.mapped.pairs.cut.gz
+cat tmppair1 tmppair2 | $bgzip > result/${name}.flt1000.mapped.pairs.cut.gz
 rm tmppair1 tmppair2
 $juicertool pre result/${name}.flt1000.mapped.pairs.cut.gz result/${name}.flt1000.hic ${genome_size} -r 2500000,1000000,500000,250000,100000,50000,25000,10000,5000,2000,1000
