@@ -23,25 +23,13 @@ nonelabel='none'
 
 #------------------------------------
 #Create directory for each RUN
-
-
 if [ ! -d $RUN ]; then
     echo "Create $RUN"
     mkdir $RUN
 fi
-# read1=${fqfile}${R1suf}
-# read2=${fqfile}${R2suf}
-nf=$( ls ${fqfile}*${R1suf}| wc -l )
-r1=$( ls ${fqfile}*${R1suf} )
-r2=$( ls ${fqfile}*${R2suf} )
 
-if [ "$nf" -gt 1 ]; then
-   cat ${fqfile}*${R1suf} > ${RUN}/$read1
-   cat ${fqfile}*${R2suf} > ${RUN}/$read2
-else
-    ln -s $r1 ${RUN}/$read1
-    ln -s $r2 ${RUN}/$read2
-fi
+read1=${fqfile}${R1suf}
+read2=${fqfile}${R2suf}
 
 pbs="$RUN.insituChiapet.jobslurm"
 peakfile="${RUN}_peaks.narrowPeak"
@@ -64,7 +52,7 @@ echo "Reference genome:"
 # perform linker detection and generation of different category of fastq files
 echo "Linker detection on: ${RUN} " 2>${LOGFILE}
 
-$cpuprog stag -A ${linker} -W -T 18 -t ${NTHREAD} -O ${RUN} ${RUN}/$read1 ${RUN}/$read2  2>>${LOGFILE}
+$cpuprog stag -A ${linker} -W -T 18 -t ${NTHREAD} -O ${RUN} $read1 $read2  2>>${LOGFILE}
 
 echo "--- linker detection completed ----" >>${LOGFILE}
 
@@ -227,7 +215,7 @@ $chiasigprog -c $PET -t $NTHREAD -p -m $selfbp ${cis_prefix}.BE2
 # Heatmap for Juicebox
 
 sed 's/chr//' ${RUN}.genome.length | sed 's/^M/ZZZZ/' | sort -k1,1 -V | sed 's/^ZZZZ/M/' >  ${RUN}.nochr.genome.length
-$juicertool pre -r 2500000,1000000,500000,250000,100000,50000,25000,10000 -k KR,GW_KR ${RUN}.e${extbp}.juice.gz $RUN.hic  ${RUN}.nochr.genome.length  2>> ${LOGFILE}
+$juicertool pre -r 2500000,1000000,500000,250000,100000,50000,25000,10000 ${RUN}.e${extbp}.juice.gz $RUN.hic  ${RUN}.nochr.genome.length  2>> ${LOGFILE}
 rm  ${RUN}.nochr.genome.length
 
 $pigz -p ${NTHREAD} $RUN.*.bedgraph
