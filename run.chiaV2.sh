@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
-set -e
+set -e 
+
 configfile=$1 #configuration general to a set of libraries
 fqfile=$2 # fqpath
 RUN=$3 # RUN name
@@ -207,7 +208,7 @@ echo -e  "Done converting file formats, ${RUN}.coverage.forBASIC.bw generated.\n
 #Significant interaction
 #get ipet > 1
 echo  Creating BE2 file and clean blacklist using $blackbed  >> ${LOGFILE}
-zcat ${cis_prefix}.gz | awk '{ if ( $7 > 1 ) print }' | $bedtools pairtobed -type neither -a stdin -b $blackbed > ${cis_prefix}.BE2
+zcat ${cis_prefix}.gz | awk '{ if ( $7 > 1 ) print }' > ${cis_prefix}.BE2
 
 #run chiasig
 $chiasigprog -c $PET -t $NTHREAD -p -m $selfbp ${cis_prefix}.BE2
