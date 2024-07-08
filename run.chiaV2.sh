@@ -22,7 +22,13 @@ singlabel='singlelinker.single'
 nonelabel='none'
 
 #------------------------------------
+#Create directory for each RUN
 
+
+if [ ! -d $RUN ]; then
+    echo "Create $RUN"
+    mkdir $RUN
+fi
 # read1=${fqfile}${R1suf}
 # read2=${fqfile}${R2suf}
 nf=$( ls ${fqfile}*${R1suf}| wc -l )
@@ -45,13 +51,6 @@ chiasigoutput="${cis_prefix}.BE2.sigf.interactions"
 statout=${RUN}.final_stats.tsv
 
 shortname=${RUN}.chiapet
-#Create directory for each RUN
-
-
-if [ ! -d $RUN ]; then
-    echo "Create $RUN"
-    mkdir $RUN
-fi
 
 cd $RUN
 
