@@ -23,8 +23,20 @@ nonelabel='none'
 
 #------------------------------------
 
-read1=${fqfile}${R1suf}
-read2=${fqfile}${R2suf}
+# read1=${fqfile}${R1suf}
+# read2=${fqfile}${R2suf}
+nf=$( ls ${fqfile}*${R1suf}| wc -l )
+r1=$( ls ${fqfile}*${R1suf} )
+r2=$( ls ${fqfile}*${R2suf} )
+
+if [ "$nf" -gt 1 ]; then
+   cat ${fqfile}*${R1suf} > $read1
+   cat ${fqfile}*${R2suf} > $read2
+else
+    ln -s $r1 $read1
+    ln -s $r2 $read2
+fi
+
 pbs="$RUN.insituChiapet.jobslurm"
 peakfile="${RUN}_peaks.narrowPeak"
 cis_prefix="${RUN}.e${extbp}.clusters.cis.chiasig"
