@@ -1,5 +1,4 @@
 # chiav2
-chiav2
 
 ChiaV2 is a packaged version of the [ChIA-PIPE workflow](https://github.com/TheJacksonLaboratory/ChIA-PIPE), which eliminates the hassle of software installation. <br/>
 **DockerHub Link: https://hub.docker.com/r/fengchuiguo1994/chiav2/tags**
