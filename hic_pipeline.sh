@@ -25,6 +25,7 @@ pairtools="${scom} pairtools"
 samtools="${scom} samtools"
 get_qc="${scom} get_qc"
 preseq="${scom} preseq"
+bgzip="${scom} bgzip"
 juicertool="$scom juicer_tools"
 path=${out_path}/result
 data=${out_path}/mapped.pairs
@@ -44,7 +45,7 @@ $get_qc -p stats.txt > result/${name}.out.qc
 $preseq lc_extrap -bam -pe -extrap 2.1e9 -step 1e8 -seg_len 1000000000 -output result/${name}.out.preseq mapped.PT.bam
 ## juicetools
 awk '!/^#/{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7}/^#/{print}' mapped.pairs > mapped.pairs.cut
-bgzip mapped.pairs.cut
+$bgzip mapped.pairs.cut
 mv mapped.pairs.cut.gz result/${name}.mapped.pairs.cut.gz -f 
 $juicertool pre result/${name}.mapped.pairs.cut.gz result/${name}.hic ${genome_size} -r 2500000,1000000,500000,250000,100000,50000,25000,10000,5000,1000
 ### rm sam
