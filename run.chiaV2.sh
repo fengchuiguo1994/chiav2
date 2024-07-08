@@ -30,11 +30,11 @@ r1=$( ls ${fqfile}*${R1suf} )
 r2=$( ls ${fqfile}*${R2suf} )
 
 if [ "$nf" -gt 1 ]; then
-   cat ${fqfile}*${R1suf} > $read1
-   cat ${fqfile}*${R2suf} > $read2
+   cat ${fqfile}*${R1suf} > ${RUN}/$read1
+   cat ${fqfile}*${R2suf} > ${RUN}/$read2
 else
-    ln -s $r1 $read1
-    ln -s $r2 $read2
+    ln -s $r1 ${RUN}/$read1
+    ln -s $r2 ${RUN}/$read2
 fi
 
 pbs="$RUN.insituChiapet.jobslurm"
@@ -65,7 +65,7 @@ echo "Reference genome:"
 # perform linker detection and generation of different category of fastq files
 echo "Linker detection on: ${RUN} " 2>${LOGFILE}
 
-$cpuprog stag -A ${linker} -W -T 18 -t ${NTHREAD} -O ${RUN} $read1 $read2  2>>${LOGFILE}
+$cpuprog stag -A ${linker} -W -T 18 -t ${NTHREAD} -O ${RUN} ${RUN}/$read1 ${RUN}/$read2  2>>${LOGFILE}
 
 echo "--- linker detection completed ----" >>${LOGFILE}
 
