@@ -219,7 +219,7 @@ $juicertool pre -r 2500000,1000000,500000,250000,100000,50000,25000,10000 ${RUN}
 rm  ${RUN}.nochr.genome.length
 
 $pigz -p ${NTHREAD} $RUN.*.bedgraph
-# $pigz -p ${NTHREAD} $RUN.*.bdg #keep the clip.sorted.bdg
+$pigz -p ${NTHREAD} $RUN*.bdg #keep the clip.sorted.bdg
 
 # Get the summary
 echo Starting to sumarize $PWD
