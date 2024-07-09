@@ -4,7 +4,7 @@ ChiaV2 is a packaged version of the [ChIA-PIPE workflow](https://github.com/TheJ
 **DockerHub Link: https://hub.docker.com/r/fengchuiguo1994/chiav2/tags**
 
 ##  Introduction
-chiav2 processes the sequencing data of ChIATAC/ChIA-PET to generate chromatin loops, coverage signal and contact matrix. chiaV2 includes linker calling, mapping, duplicate removing, loop calling. It also contain the software for Hi-C analysis.
+chiav2 processes the sequencing data (ChIATAC/ChIA-PET/Bridge-linker Hi-C) to generate chromatin loops, coverage signal and contact matrix. chiaV2 includes linker calling, mapping, duplicate removing, loop calling. It also contain the software for Hi-C analysis.
 
 ##  [System Requirements](https://sylabs.io/guides/3.8/admin-guide/installation.html)
 ###   Hardware
