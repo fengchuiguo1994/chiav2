@@ -74,6 +74,9 @@ singularity run chiav2.sif bwa index GRCm39.genome.fa
 
 # 3. Execute program.
 bash run.chiaV2.sh chiaV2.config.sh ${PWD}/demoData/ChIATACdata/SCG0192 result # abspath
+chiaV2.config.sh: config file
+${PWD}/demoData/ChIATACdata/SCG0192: the prefix of the input fastq data, must be absolute path
+result: output dir
 ```
 
 ###   Example result
@@ -106,6 +109,8 @@ singularity run chiav2.sif bwa index GRCm39.genome.fa
 
 # 3. Execute program.
 bash hic_pipeline.sh ${PWD}/demoData_hic/Bcell_hic ${PWD}/result # abspath
+${PWD}/demoData_hic/Bcell_hic: the prefix of the input fastq data, must be absolute path
+${PWD}/result: output dir, must be absolute path
 ```
 
 ###   Example result (in result folder)
