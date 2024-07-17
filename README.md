@@ -86,6 +86,7 @@ result: output dir
 | *.treat_pileup.NDP.bw | coverage signal (like ChIPSeq) |
 | *.hic | contact matrix (Visualization in [juicer-box](https://aidenlab.org/juicebox/))|
 | *.BE2.sigf.interactions | chromatin loops |
+| *.final_stats.tsv | result report |
 
 
 # Hi-C pipeline
