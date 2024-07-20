@@ -59,6 +59,7 @@ $ yum install -y singularity
 You can download chiav2 by running the following command:
 ```
 singularity build chiav2.sif docker://fengchuiguo1994/chiav2:1.0
+singularity build chiav2.sif docker://docker.awsl9527.cn/fengchuiguo1994/chiav2:1.0
 ```
 
 
