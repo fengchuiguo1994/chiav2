@@ -197,7 +197,7 @@ echo ENDED ${RUN} coverage density generated. | tee -a ${LOGFILE}
 $bedtools genomecov -ibam ${RUN}.forBASIC.bam -bg > ${RUN}.forBASIC.bedgraph
 
 # Sort bedgraph
-sort --parallel=${NTHREAD} -k1,1 -k2,2n -k3,3n ${RUN}.forBASIC.bedgraph > ${RUN}.forBASIC.sorted.bedgraph
+LC_COLLATE=C sort --parallel=${NTHREAD} -k1,1 -k2,2n -k3,3n ${RUN}.forBASIC.bedgraph > ${RUN}.forBASIC.sorted.bedgraph
 
 # Make bigwig
 $scom bedGraphToBigWig ${RUN}.forBASIC.sorted.bedgraph  ${RUN}.genome.length ${RUN}.coverage.forBASIC.bw
