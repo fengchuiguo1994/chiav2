@@ -166,7 +166,7 @@ $samtools sort -@ $NTHREAD -o ${RUN}.$singlabel.nr.sorted.bam ${RUN}.$singlabel.
 $samtools sort -@ $NTHREAD -o ${RUN}.$nonelabel.nr.sorted.bam ${RUN}.$nonelabel.F2048.bam  
 
 #forBASIC still have blacklist.  Removed secondary alignment with -F2048; for clean view we have NDP ${RUN}_treat_pileup.clip.sorted.bdg
-$samtools merge -@ $NTHREAD ${RUN}.forBASIC.bam ${RUN}.$pairlabel.nr.sorted.bam ${RUN}.$singlabel.nr.sorted.bam ${RUN}.$nonelabel.nr.sorted.bam
+$samtools merge -f -@ $NTHREAD ${RUN}.forBASIC.bam ${RUN}.$pairlabel.nr.sorted.bam ${RUN}.$singlabel.nr.sorted.bam ${RUN}.$nonelabel.nr.sorted.bam
 
 echo 'Convert bam to bed for macs2 callpeak and clean from blacklist... '
 if [ ${blackbed} != "null" ];then
