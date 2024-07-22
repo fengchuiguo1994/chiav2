@@ -188,7 +188,7 @@ echo  Generating coverage density.. | tee -a ${LOGFILE}
 $samtools view -H ${RUN}.forBASIC.bam | grep '^@SQ' | cut -f 2-3 | sed s?SN:?? | sed s?LN:?? > ${RUN}.genome.length
 
 $scom bedClip ${RUN}_treat_pileup.bdg ${RUN}.genome.length ${RUN}_treat_pileup.clip.bdg
-sort -k1,1 -k2,2n ${RUN}_treat_pileup.clip.bdg > ${RUN}_treat_pileup.clip.sorted.bdg
+$scom bedSort ${RUN}_treat_pileup.clip.bdg ${RUN}_treat_pileup.clip.sorted.bdg
 
 $scom bedGraphToBigWig ${RUN}_treat_pileup.clip.sorted.bdg ${RUN}.genome.length ${RUN}.treat_pileup.NDP.bw
 echo ENDED ${RUN} coverage density generated. | tee -a ${LOGFILE}
