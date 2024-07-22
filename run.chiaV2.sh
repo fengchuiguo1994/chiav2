@@ -61,11 +61,11 @@ $cpuprog stat -s -p -T 18 -t 1 ${RUN}.cpu 2>>${LOGFILE} 1>${RUN}.stat
 echo "--- statistics done  ----" >>${LOGFILE}
 
 echo "--- pigziiping   ----" >>${LOGFILE}
-$pigz -p ${NTHREAD} ${RUN}.singlelinker.paired.fastq 2>>${LOGFILE}
-$pigz -p ${NTHREAD} ${RUN}.singlelinker.single.fastq 2>>${LOGFILE}
-$pigz -p ${NTHREAD} ${RUN}.none.fastq 2>>${LOGFILE}
-$pigz -p ${NTHREAD} ${RUN}.conflict.fastq 2>>${LOGFILE}
-$pigz -p ${NTHREAD} ${RUN}.tied.fastq 2>>${LOGFILE}
+$pigz -f -p ${NTHREAD} ${RUN}.singlelinker.paired.fastq 2>>${LOGFILE}
+$pigz -f -p ${NTHREAD} ${RUN}.singlelinker.single.fastq 2>>${LOGFILE}
+$pigz -f -p ${NTHREAD} ${RUN}.none.fastq 2>>${LOGFILE}
+$pigz -f -p ${NTHREAD} ${RUN}.conflict.fastq 2>>${LOGFILE}
+$pigz -f -p ${NTHREAD} ${RUN}.tied.fastq 2>>${LOGFILE}
 
 #------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ echo  START  ${RUN} cpu memaln .. | tee -a ${LOGFILE}
 echo  Mapping paired tags .. | tee -a ${LOGFILE}
 $cpuprog memaln -T $minMapScore -t ${NTHREAD} $fasta ${RUN}.$pairlabel.fastq.gz 2>> ${LOGFILE} 1>${RUN}.$pairlabel.sam
 
-$pigz -p ${NTHREAD} ${RUN}.$pairlabel.sam | tee -a ${LOGFILE}
+$pigz -f -p ${NTHREAD} ${RUN}.$pairlabel.sam | tee -a ${LOGFILE}
 echo  ENDED pair mapping | tee -a ${LOGFILE}
 
 #pairing
